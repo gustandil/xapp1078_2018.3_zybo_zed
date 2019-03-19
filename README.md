@@ -1,4 +1,4 @@
-#Instructions for Vivado/Petalinux 2018.3#
+# Instructions for Vivado/Petalinux 2018.3 #
 
 This information is based on 'Xapp1078 Instructions for Vivado 2014.4'[complete ref here]
 And the orginal explanation and material comes from Xilinx Xapp1078 
@@ -25,7 +25,7 @@ Create, build, and export the hdwr design to SDK by running the included script 
 
   Note: the board files from Avnet (MicroZed, ZedBoard), Digilent (Zybo Z-20, Zedboard) and are NOT included in this project
     
-##Review the create_proj_zyboZ20.tcl file.## 
+## Review the create_proj_zyboZ20.tcl file. ## 
 This script does the following:
   - Create a new project
   - Set the properties of the project such as part used and board used
@@ -45,7 +45,7 @@ This script does the following:
 When the script finishes running it will open SDK. In the SDK workspace a hardware platform project is
 created automatically.
 
-##Setup for the App for CPU1 (Bare Metal)##
+## Setup for the App for CPU1 (Bare Metal) ##
 
 Setup SDK to use the included <xapp1078_2018.3>/design/src/sdk_repo. This repository includes a modified
 standalone BSP.
@@ -61,7 +61,7 @@ Create the BSP for CPU1
   Select Overview->drivers->ps7_cortexa9_1 and change the extra_compiler_flags value to contain '-DUSE_AMP=1 -DSTDOUT_BASEADDRESS=1'
   Select OK
   
-##Create the Application that will run on CPU1##
+## Create the Application that will run on CPU1 ##
   Select File->New->Application_Project
   Enter the project name 'app_cpu1'
   Change Processor to ps7_cortexa9_1
