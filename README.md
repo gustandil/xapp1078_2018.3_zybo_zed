@@ -1,6 +1,6 @@
 # Instructions for Vivado/Petalinux 2018.3 #
 
-This information is based on 'Xapp1078 Instructions for Vivado 2014.4'[complete ref here]
+This information is based on 'Xapp1078 Instructions for Vivado 2014.4'[complete ref here].
 Original explanation and material comes from Xilinx Xapp1078 
 "Simple AMP Running Linux and Bare-Metal System on Both Zynq SoC Processors (feb2013)"
 
