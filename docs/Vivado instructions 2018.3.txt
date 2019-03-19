@@ -330,8 +330,3 @@ Working with the design
       When you press the VIO button, an interrupt is generated and cpu1 will acknowledge it by printing to the linux softuart:
         'CPU1: IRQ clr <incrementing value>'
         The ILA will also trigger capturing the assertion and deassertion of the IRQ
-
-  
-  
-  
- 
