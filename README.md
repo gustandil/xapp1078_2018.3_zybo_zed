@@ -1,10 +1,10 @@
 # Instructions for Vivado/Petalinux 2018.3 #
 
 This information is based on 'Xapp1078 Instructions for Vivado 2014.4'[complete ref here]
-And the orginal explanation and material comes from Xilinx Xapp1078 
-Simple AMP Running Linux and Bare-Metal System on Both Zynq SoC Processors (feb2013)
+Original explanation and material comes from Xilinx Xapp1078 
+"Simple AMP Running Linux and Bare-Metal System on Both Zynq SoC Processors (feb2013)"
 
-NOTE: These flow was verfied in ZedBoard and Zibo Z-20. Porting to Zybo and Zybo Z-10 is trivial
+NOTE: These flow was verfied in ZedBoard and Zybo Z-20. Porting to Zybo and Zybo Z-10 is trivial
 
 Note: This project requires using a Linux host to compile the embedded Linux kernel. 
 The instructions have been setup such that all implementation work will be done in a directory 
@@ -45,14 +45,11 @@ This script does the following:
 When the script finishes running it will open SDK. In the SDK workspace a hardware platform project is
 created automatically.
 
-## Setup for the App for CPU1 (Bare Metal) ##
+## Create the BSP for CPU1 (Bare Metal) ##
 
-Setup SDK to use the included <xapp1078_2018.3>/design/src/sdk_repo. This repository includes a modified
-standalone BSP.
-  Note: The Vivado 2014.4 instruction, modifies the "standalone v4.2 BSP".
-        The modifcations affect functions that uses stdout and boot.S. We do not use this features
+  Note: In the Vivado 2014.4 instructions, authors modifies the "standalone v4.2 BSP".
+        The modifications affect functions that uses stdout and the boot.S. We do not use this features
 
-Create the BSP for CPU1
   Select File->New->Board_Support_Package
   Enter the project name 'app_cpu1_bsp'
   Change CPU to ps7_cortexa9_1.
@@ -77,7 +74,7 @@ Create the BSP for CPU1
   For Zedboard. Since we have only 512 MB, change CPU1 address init from 0x30000000 to 0x18000000 !!!
   768 MB to 384 MB. We need also to change the size from 256MB to 128MB (0x10000000 to 0x08000000)
 
-Create, configure & build Petalinux Project
+## Create, configure & build Petalinux Project ## 
   On a linux host machine that includes the Petalinux 2018.3 build environment, 
   create and move to the directory where you want to create the petalinux project
   mkdir <xapp1078_2018.3>
