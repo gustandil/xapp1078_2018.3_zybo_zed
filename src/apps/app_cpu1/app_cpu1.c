@@ -110,7 +110,7 @@ int main()
 	ScuTimerInit();
 #endif
 
-  xil_printf("Starting CPU1 code\n");
+  //xil_printf("Starting CPU1 code\n");
 	
 	// 1sec tick heartbeat visible from linux
   while(1) {

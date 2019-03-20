@@ -1,5 +1,4 @@
 
-
 # Create project
 set proj_name project_1
 create_project -force $proj_name ./$proj_name

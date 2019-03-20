@@ -6,24 +6,24 @@ Original explanation and material comes from Xilinx Xapp1078
 
 NOTE: These flow was verfied in ZedBoard and Zybo Z-20. Porting to Zybo and Zybo Z-10 is trivial
 
-Note: This project requires using a Linux host to compile the embedded Linux kernel. 
+NOTE: This project requires using a Linux host to compile the embedded Linux kernel. 
 The instructions have been setup such that all implementation work will be done in a directory 
-called xapp1078_2018.3/design and all linux work will be done in a directory called xapp1078_2018.3/plnx-project. 
-The instructions will require files to be copied between xapp1078_2018.3/design and xapp1078_2018.3/plnx-project 
+called "xapp1078_2018.3/" and all linux work will be done in a directory called xapp1078_2018.3/plnx-project. 
+The instructions will require files to be copied between xapp1078_2018.3 and xapp1078_2018.3/plnx-project 
 so if the Vivado and SDK tools are ran on a Windows machine, the files will need to be copied from the Windows 
 xapp1078_2018.3/design to the Linux machine's xapp1078_2018.3/plnx-project.
 This project was tested using Vivado 2018.3/ Petalinx 2018.3 and Vivado 2018.3/ Petalinux 2017.3
  
 Extract xapp1078_2018.3.zip into <xapp1078_2018.3> (or clone Git repository and chage the name to <xapp1078_2018.3>
-Create a new work directory, <xapp1078_2018.3>/design/work
+Create a new work directory, <xapp1078_2018.3>/work
 Copy the directory <xapp1078_2018.3>/design/src/bootgen to <xapp1078_2018.3>/design/work/bootgen
 Open Vivado 2018.3
-In the Tcl command window, 'cd <xapp1078_2018.3>/design/work'
+In the Tcl command window, 'cd <xapp1078_2018.3>/work'
 Create, build, and export the hdwr design to SDK by running the included script using tcl:
   For the ZedBoard design, run the tcl command 'source ../src/scripts/create_proj_zedBoard.tcl'
   For the Zybo Z20 design, run the tcl command 'source ../src/scripts/create_proj_zyboZ20.tcl'
 
-  Note: the board files from Avnet (MicroZed, ZedBoard), Digilent (Zybo Z-20, Zedboard) and are NOT included in this project
+NOTE: You will need the board files from Digilent (Zybo Z-20) or Avnet (MicroZed). This file are NOT included in this project
     
 ## Review the create_proj_zyboZ20.tcl file. ## 
 This script does the following:
@@ -87,7 +87,7 @@ created automatically.
   cd plnx-project
   mkdir ../hwdef
     Create a directory that will contain the Vivado exported hdf file
-  cp <xapp1078_2018.3>/design/work/project_1/project_1.sdk/design_1_wrapper.hdf ../hwdef
+  cp <xapp1078_2018.3>/work/project_1/project_1.sdk/design_1_wrapper.hdf ../hwdef
     This command copies the Vivado exported hdf file
   petalinux-config --get-hw-description=../hwdef
     This command configures petalinux to point to the directory that contains the hdf file
@@ -110,7 +110,7 @@ created automatically.
 
   petalinux-create -t apps --template c --name softuart
     Create a new application template for the linux softuart function
-  cp <xapp1078_2018.3>/design/src/apps/softUart/softuart.c   \
+  cp <xapp1078_2018.3>/src/apps/softUart/softuart.c   \
 				[dir]/plnx-project/project-spec/meta-user/recipes-apps/softuart/files/softuart.c
     Replace the petalinux project's templated softuart.c with the src that was included in the xapp
   petalinux-config -c rootfs
@@ -212,17 +212,24 @@ created automatically.
     The built image.ub is a FIT format and contains: linux kernel, ramdisk, and device tree 
 
 Create the bootable file for the SD card.
-  cp images/linux/zynq_fsbl.elf <xapp1078_2018.3>/design/work/bootgen
-  cp images/linux/u-boot.elf <xapp1078_2018.3>/design/work/bootgen
+  cp images/linux/zynq_fsbl.elf <xapp1078_2018.3>/work/bootgen
+  cp images/linux/u-boot.elf <xapp1078_2018.3>/work/bootgen
+  In Windows:
   Within SDK, select Xilinx_tools->launch_shell
     A new command shell is started with an environment pointing to the SDK and Vivado tools
   cd ..\..\bootgen
   createBoot.bat
     This batch file runs bootgen and uses bootimage.bif for input. The bif is used to package
     the fsbl, u-boot, cpu1 app, and fpga bit file into boot.bin
+	
+  In Linux	
+  cd <xapp1078_2018.3>/work/bootgen
+  bootgen -image bootimage.bif -o i BOOT.BIN -w on 
+    This command (bootgen) and uses bootimage.bif for input.The bif is used to package
+    the fsbl, u-boot, cpu1 app, and fpga bit file into boot.bin 
 
 Copy the boot and embedded Linux files to the SD card
-  cp <xapp1078_2014.4>/design/work/bootgen/BOOT.BIN <SD card>
+  cp <xapp1078_2014.4>/work/bootgen/BOOT.BIN <SD card>
   cp <xapp1078_2014.4>/plnx-project/images/linux/image.ub <SD card>
 
 ///////////////////////////////////////////////////////////////////

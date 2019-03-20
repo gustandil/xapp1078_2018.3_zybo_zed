@@ -16,10 +16,6 @@
  *
  */
 
-/*
- * helloworld.c: simple test application
- */
-
 /***************************** Include Files *********************************/
 //#include "xparameters.h"
 //#include "xil_io.h"

@@ -157,4 +157,3 @@ int scu_sleep(unsigned int seconds)
 	return 0;
 }
 
-

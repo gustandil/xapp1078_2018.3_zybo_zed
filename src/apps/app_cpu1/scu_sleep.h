@@ -80,5 +80,4 @@ int ScuTimerInit(void);
 int scu_sleep(unsigned int seconds);
 
 
-
 #endif  //_SCU_SLEEP_H protection macro
