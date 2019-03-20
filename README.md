@@ -232,9 +232,9 @@ Copy the boot and embedded Linux files to the SD card
   cp <xapp1078_2014.4>/work/bootgen/BOOT.BIN <SD card>
   cp <xapp1078_2014.4>/plnx-project/images/linux/image.ub <SD card>
 
-///////////////////////////////////////////////////////////////////
-// Optional
-///////////////////////////////////////////////////////////////////
+***************************************
+*OPTIONAL 1*
+***************************************
 The petalinux build creates a FIT formated file image.ub. This file contains the kernel, root filesystem, and
 the devicetree. The following optional commands seperates the devicetree and creates a uImage file that contains the
 kernel and root filesystem. This flow can be handy when working with multiple devicetrees.
@@ -279,12 +279,12 @@ U-Boot-PetaLinux> run sdboot_devtree   #boot from sd card
 
 The next time u-boot runs, it will automatically boot using the devicetree on the SD card.
 
-///////////////////////////////////////////////////////////////////
-// End Optional
-///////////////////////////////////////////////////////////////////
+***************************************
+*END OPTIONAL 1*
+***************************************
 
 ***************************************
-*OPTIONAL*
+*OPTIONAL 2*
 ***************************************
 If already booted in linux, new boot files can be copied to the SD card using tftp if a tftp daemon on a host machine
 is available.
@@ -295,7 +295,7 @@ cd /media
 tftp <hostIP> -g -r uImage
 
 ***************************************
-*END OPTIONAL*
+*END OPTIONAL 2*
 ***************************************
 
 
@@ -334,3 +334,4 @@ Working with the design
       When you press the VIO button, an interrupt is generated and cpu1 will acknowledge it by printing to the linux softuart:
         'CPU1: IRQ clr <incrementing value>'
         The ILA will also trigger capturing the assertion and deassertion of the IRQ
+		
